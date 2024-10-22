@@ -20,6 +20,27 @@ const excluirLivro = async (codigo: number) => {
   return response.ok;
 };
 
+const LinhaLivro: React.FC<{ livro: Livro, excluir: (codigo: number) => void }> = ({ livro, excluir }) => (
+  <tr key={livro.codigo}>
+    <td>
+      {livro.titulo}
+      <br />
+      <button className="btn btn-danger mt-2" onClick={() => excluir(livro.codigo)}>
+        Excluir
+      </button>
+    </td>
+    <td>{livro.resumo}</td>
+    <td>{controleEditora.getNomeEditora(livro.codEditora)}</td>
+    <td>
+      <ul>
+        {livro.autores.map((autor, index) => (
+          <li key={index}>{autor}</li>
+        ))}
+      </ul>
+    </td>
+  </tr>
+);
+
 const LivroLista: React.FC = () => {
   const [livros, setLivros] = useState<Array<Livro>>([]);
   const [carregado, setCarregado] = useState<boolean>(false);
@@ -63,24 +84,7 @@ const LivroLista: React.FC = () => {
           </thead>
           <tbody>
             {livros.map((livro) => (
-              <tr key={livro.codigo}>
-                <td>
-                  {livro.titulo}
-                  <br />
-                  <button className="btn btn-danger mt-2" onClick={() => excluir(livro.codigo)}>
-                    Excluir
-                  </button>
-                </td>
-                <td>{livro.resumo}</td>
-                <td>{controleEditora.getNomeEditora(livro.codEditora)}</td>
-                <td>
-                  <ul>
-                    {livro.autores.map((autor, index) => (
-                      <li key={index}>{autor}</li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
+              <LinhaLivro key={livro.codigo} livro={livro} excluir={excluir} />
             ))}
           </tbody>
         </table>

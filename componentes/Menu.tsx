@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const Menu: React.FC = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <nav className="navbar navbar-expand-lg navbar-custom">
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -20,7 +20,7 @@ export const Menu: React.FC = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link href="/" legacyBehavior>
-                <a className="nav-link active" aria-current="page">Home</a>
+                <a className="nav-link" aria-current="page">Home</a>
               </Link>
             </li>
             <li className="nav-item">
